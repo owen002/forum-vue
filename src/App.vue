@@ -1,43 +1,23 @@
 <template>
-  <div id="app">
-    <hello :hello="hello"></hello>
-  </div>
+  <nv-hello :hello="hello"></nv-hello>
 </template>
 
 <script>
-  import $ from 'webpack-zepto';
-  import Hello from 'components/hello'
+  import nvHello from 'components/hello'
   export default {
     name: 'app',
     components: {
-      Hello
+      nvHello
     },
     mounted(){
-      //设置html Rem
-      let rootRem = screen.width / 10;
-      $('html').css('fontSize', rootRem + 'px');
-      $('body').css('fontSize', '0.45rem');
+      setTimeout(() => {
+        this.hello = '不欢迎你进入！！！！是不可能的'
+      },5000)
     },
     data(){
       return {
-        hello: '欢迎进入cnode论坛'
+        hello: '欢迎进入论坛'
       }
     }
   }
 </script>
-
-<style>
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-  }
-
-  html, body, #app {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-  }
-</style>

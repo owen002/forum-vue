@@ -2,7 +2,9 @@
   <section class="hellw-comp">
     <div class="header-sec">
       <img class="header-hello-img" src="./../assets/logo.png">
-      <div class="welcome-state" v-text="hello"></div>
+      <router-link :to="{name:'list'}">
+        <div class="welcome-state" v-text="hello"></div>
+      </router-link>
     </div>
     <div class="wel-date" v-text="webDate"></div>
   </section>
@@ -36,26 +38,27 @@
     }
   }
 </script>
-<style>
-  .hellw-comp{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    height:100%;
+<style lang="less">
+  @import "../assets/less/main.less";
+  .hellw-comp {
+    .dis-flex-col-nowrap();
+    height: 100%;
     justify-content: space-between;
+    .header-sec {
+      .dis-flex-col-nowrap();
+      .header-hello-img {
+        width: 6rem;
+        margin-left: 2rem;
+      }
+    }
   }
-  .wel-date{
+  .wel-date {
     flex-basis: 10%;
     font-size: 0.35rem;
     color: #828282;
   }
-  .header-hello-img{
-    width: 6rem;
-    margin-left: 2rem;
-  }
-  .header-sec{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
+  a{
+    text-decoration: none;
+    color: #046bd8;
   }
 </style>

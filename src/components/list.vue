@@ -1,35 +1,41 @@
 <template>
-
+  <section>
+    <div class="mask transition-all"></div>
+    <leftMenu :toggleMask="toggleMask" :changeOpacityMask="changeOpacityMask"></leftMenu>
+    <nv-header>列表页面</nv-header>
+  </section>
 </template>
 
 <script>
-export default {
-  name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+  import leftMenu from './left-menu.vue';
+  import nvHeader from './header.vue';
+
+  export default {
+    name: 'list',
+    components: {
+      leftMenu,
+      nvHeader
+    },
+    methods: {
+      toggleMask: (state)=> {
+        if (document.querySelector('.mask').style.display != state)
+          document.querySelector('.mask').style.display = state;
+      },
+      changeOpacityMask: (val) => {
+        document.querySelector('.mask').style.opacity = val;
+      }
     }
   }
-}
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
+<style>
+  .mask {
+    background-color: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 900;
+    display: none;
+  }
 </style>
