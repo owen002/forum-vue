@@ -5,11 +5,13 @@ Vue.use(Vuex);
 
 const state = {
   userInfo: {
-    username: '我叫什么名字',
-    age: '18岁',
-    userid:'1122aaabnb'
+    username: '',
+    age: '',
+    userid:''
   },
-  rootRem:''
+  rootRem:'',
+  translateX:'',
+  maskOpacity:0
 };
 
 const getters = {
@@ -18,6 +20,12 @@ const getters = {
   },
   [types.GET_REM](state){
     return state.rootRem
+  },
+  [types.GET_TRANSLATE](state){
+    return state.translateX
+  },
+  [types.GET_MASKOPACITY](state){
+    return state.maskOpacity
   }
 };
 
@@ -27,6 +35,12 @@ const actions = {
   },
   [types.MODIFY_REM](context,rootRem){
     context.commit(types.MODIFY_REM,rootRem)
+  },
+  [types.SET_TRANSLATE](context,translate){
+    context.commit(types.SET_TRANSLATE,translate)
+  },
+  [types.SET_MASKOPACITY](context,maskop){
+    context.commit(types.SET_MASKOPACITY,maskop)
   }
 };
 
@@ -36,6 +50,12 @@ const mutations = {
   },
   [types.MODIFY_REM](state,rootRem){
     state.rootRem = rootRem;
+  },
+  [types.SET_TRANSLATE](state,translate){
+    state.translateX = translate;
+  },
+  [types.SET_MASKOPACITY](state,opcity){
+    state.maskOpacity = opcity;
   }
 };
 

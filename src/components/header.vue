@@ -2,12 +2,20 @@
   <header class="header-wrap">
     <div class='header-i-1'></div>
     <div class="header-i-2"><slot></slot></div>
-    <div class="menu header-i-1">菜单</div>
+    <div @click="showLeftBar" class="menu header-i-1">菜单</div>
   </header>
 </template>
 <script>
+  import $ from 'webpack-zepto';
+  import types from './../vuex/types';
+  import {mapGetters} from 'vuex';
   export default{
-
+    props:['showLeftBar'],
+    computed:{
+      ...mapGetters({
+        rootRem:types.GET_REM
+      })
+    }
   }
 </script>
 <style lang="less">
@@ -15,7 +23,7 @@
   .header-wrap{
     .dis-flex-row-nowrap();
     justify-content: space-between;
-    background-color: #ff0000;
+    background-color: #229ee3;
     color:#fff;
     height: 44px;
     line-height: 44px;
@@ -26,7 +34,7 @@
       flex-basis: 78%;
     }
     .menu{
-      background-color: #ffdb13;
+      background-color: #46aee8;
     }
   }
 </style>

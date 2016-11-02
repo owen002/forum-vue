@@ -9,6 +9,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "fastclick": "^1.0.6",
+    "v-tap": "^2.0.2",
     "vue": "^2.0.1",
     "webpack-zepto": "0.0.1"
   },

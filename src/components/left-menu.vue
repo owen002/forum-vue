@@ -9,12 +9,8 @@
         <li>目录4</li>
         <li>目录5</li>
         <li>目录6</li>
-        <li>目录1</li>
-        <li>目录2</li>
-        <li>目录3</li>
       </ul>
     </div>
-    <div class="about">关于</div>
   </section>
 </template>
 <script>
@@ -24,12 +20,7 @@
   import $ from 'webpack-zepto'
 
   export default{
-    data(){
-      return {
-        translateX: ''
-      }
-    },
-    props: ['toggleMask', 'changeOpacityMask'],
+    props: ['toggleMask', 'changeOpacityMask','translateX'],
     computed: {
       ...mapGetters({rootRem: types.GET_REM})
     },
@@ -37,35 +28,6 @@
       userInfo
     },
     mounted(){
-      let pX = '', max = 6, hidemin = 3;
-      $(document).on('touchmove', (e)=> {
-        pX = e.touches[0].pageX;
-        let lv = pX - 10 * this.rootRem;
-        if (lv < -max * this.rootRem) {
-          e.stopPropagation();
-          return false
-        }
-        this.translateX = 'transform:translateX(' + lv + 'px)';
-        let ablv = Math.abs(lv), percentopac = ((ablv / (max * this.rootRem))*0.5).toFixed(2);
-        this.changeOpacityMask(percentopac);
-        this.toggleMask('block');
-      }).on('touchend', ()=> {
-        var transiX = this.translateX.match(/.*\((.*)px\)/);
-        if (transiX && transiX.length > 1) {
-          transiX = Math.abs(transiX[1]);
-          if (transiX > hidemin * this.rootRem) {
-            this.translateX = 'transform:translateX(-' + max * this.rootRem + 'px)';
-          } else {
-            this.translateX = 'transform:translateX(0px)';
-            this.toggleMask('none');
-          }
-        } else {
-          this.translateX = 'transform:translateX(0px)';
-          this.toggleMask('none');
-        }
-      })
-    },
-    beforeRouteEnter(){
     }
   }
 </script>

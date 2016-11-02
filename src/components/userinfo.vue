@@ -4,10 +4,10 @@
       <img src="./../assets/user.png" alt="">
     </div>
     <div class="user-name" v-show="!!userInfo.userid" v-text="userInfo.username"></div>
-    <button v-if="!userInfo.userid" class="btn btn-primary">
+    <button v-if="!userInfo.userid" class="btn btn-primary" @click="goLogin">
       登录
     </button>
-    <button v-if="!!userInfo.userid" class="bg-red btn btn-primary">
+    <button v-if="!!userInfo.userid" class="bg-red btn btn-primary" @click="logOut">
       退出
     </button>
   </section>
@@ -20,19 +20,27 @@
     computed: {
       ...mapGetters({'userInfo': types.GET_USERINFO})
     },
+    methods: {
+      goLogin(){
+        this.$router.push({name:'welcome',query:{userid:'222'}});
+      },
+      logOut(){
+        this.$router.push({name:'welcome',params:{}});
+      }
+    }
   }
 </script>
 <style lang="less">
   @import "../assets/less/main.less";
-  .user-section{
-    .user-img-div{
-      img{
+  .user-section {
+    .user-img-div {
+      img {
         width: 2rem;
         border-radius: 1rem;
         margin-top: 0.5rem;
       }
     }
-    .user-name{
+    .user-name {
       font-size: 0.45rem;
       margin-top: 0.2rem;
       color: #032a9c;
