@@ -10,7 +10,7 @@
     mounted(){
       //设置html Rem
       let rootRem = screen.width / 10;
-      this.$store.dispatch(types.MODIFY_REM,rootRem);
+      this.$store.dispatch(types.MODIFY_REM, rootRem);
       $('html').css('fontSize', rootRem + 'px');
       $('body').css('fontSize', '0.45rem');
     }
@@ -29,7 +29,7 @@
     padding: 0;
     margin: 0;
     height: 100%;
-    width:100%;
+    width: 100%;
     overflow: hidden;
   }
 

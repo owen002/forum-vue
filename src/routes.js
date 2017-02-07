@@ -1,25 +1,32 @@
 const Index = resolve => {
-  require.ensure(['./index.vue'], ()=> {
+  require.ensure(['./R.vue'], () => {
+    resolve(require('./R.vue'));
+  })
+};
+
+const Outer = resolve => {
+  require.ensure(['./index.vue'], () => {
     resolve(require('./index.vue'));
   })
 };
 
 const Welcome = resolve => {
-  require.ensure(['./App.vue'], ()=> {
+  require.ensure(['./App.vue'], () => {
     resolve(require('./App.vue'));
   })
 };
 
 const List = resolve => {
-  require.ensure(['./components/list.vue'], ()=> {
+  require.ensure(['./components/list.vue'], () => {
     resolve(require('./components/list.vue'));
   })
 };
 
+
 const routes = [{
-  path: '/',
-  name: 'index',
-  component: Index,
+  path: '/index',
+  name: 'out',
+  component: Outer,
   children: [
     {
       path: 'welcome',
@@ -32,6 +39,10 @@ const routes = [{
       component: List
     }
   ]
+}, {
+  path: '/',
+  name: '',
+  component: Index,
 }];
 
 export default routes;
