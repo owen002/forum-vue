@@ -6,13 +6,21 @@
 <script>
   import $ from 'webpack-zepto';
   import types from './vuex/types';
+  import {mapActions} from 'vuex';
   export default{
     mounted(){
       //设置html Rem
       let rootRem = screen.width / 10;
-      this.$store.dispatch(types.MODIFY_REM, rootRem);
+//      this.$store.dispatch(types.MODIFY_REM, rootRem);
+      this.mRem(rootRem);
+
       $('html').css('fontSize', rootRem + 'px');
       $('body').css('fontSize', '0.45rem');
+    },
+    methods:{
+      ...mapActions({
+          mRem:types.MODIFY_REM
+      })
     }
   }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="{'name':'welcome'}">全部</router-link>
+    <router-link :to="{'name':'welcome'}">欢迎</router-link>
     <br>
     <router-link :to="{'name':'list'}">进入列表</router-link>
   </div>

@@ -22,10 +22,11 @@
     },
     methods: {
       goLogin(){
+          //
         this.$router.push({name:'welcome',query:{userid:'222'}});
       },
       logOut(){
-        this.$router.push({name:'welcome',params:{}});
+        this.$router.push({name:'welcome',query:{userid:''}});
       }
     }
   }

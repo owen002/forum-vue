@@ -1,7 +1,7 @@
 <template>
   <section id="listViewWrapper" @touchmove="resolveTouchMove" @touchend="resolveTouchend">
     <div class="mask transition-all" @click="showLeftBar" v-show="maskFlag" v-bind:style="{opacity:opacity}"></div>
-    <leftMenu :translateX="translateX"></leftMenu>
+    <leftMenu @hiFather="showChildMsg" :translateX="translateX"></leftMenu>
     <nv-header :showLeftBar="showLeftBar">列表页面</nv-header>
   </section>
 </template>
@@ -32,8 +32,10 @@
       nvHeader
     },
     methods: {
+      showChildMsg(msg){
+        alert(msg);
+      },
       changeOpacityMask(val){
-//        document.querySelector('.mask').style.opacity = val;
         this.opacity = val;
       },
       resolveTouchMove(e) {

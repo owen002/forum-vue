@@ -3,7 +3,7 @@
     <user-info></user-info>
     <div class="left-menus">
       <ul>
-        <li>目录1</li>
+        <li  @click="pflow">目录1</li>
         <li>目录2</li>
         <li>目录3</li>
         <li>目录4</li>
@@ -20,12 +20,22 @@
   import $ from 'webpack-zepto'
 
   export default{
-    props: ['toggleMask', 'changeOpacityMask','translateX'],
+    props: ['toggleMask', 'changeOpacityMask','translateX','fProp'],
     computed: {
       ...mapGetters({rootRem: types.GET_REM})
     },
     components: {
       userInfo
+    },
+    methods:{
+      pflow(){
+        this.$emit('hiFather',this.childState)
+      }
+    },
+    data(){
+      return {
+        childState:'i am a child'
+      }
     },
     mounted(){
     }
