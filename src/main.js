@@ -11,6 +11,10 @@ const router = new VueRouter({
   mode:'history',
   routes: routes
 });
+router.beforeEach((to, from, next) => {
+  console.log(from,'  ',to);
+  next();
+})
 
 new Vue({
   router,

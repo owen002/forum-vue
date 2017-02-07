@@ -23,10 +23,10 @@
     methods: {
       goLogin(){
           //
-        this.$router.push({name:'welcome',query:{userid:'222'}});
+        this.$router.push({name:'welcome',params:{user:'222'}});
       },
       logOut(){
-        this.$router.push({name:'welcome',query:{userid:''}});
+        this.$router.replace({name:'welcome'});
       }
     }
   }

@@ -1,12 +1,15 @@
 <template>
   <div id="indexRt">
+    <transition name="slide-right">
     <router-view></router-view>
+    </transition>
   </div>
 </template>
 <script>
   import $ from 'webpack-zepto';
   import types from './vuex/types';
   import {mapActions} from 'vuex';
+
   export default{
     mounted(){
       //设置html Rem

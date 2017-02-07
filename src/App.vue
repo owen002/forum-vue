@@ -16,7 +16,8 @@
         this.hello = '不欢迎你进入！！！！是不可能的'
       }, 2000);
       this.$nextTick(function () {
-        const userid = this.$route.query.userid;
+//        const userid = this.$route.query.userid;
+        const userid = this.$route.params.user;
         var userinfo = {
           username: userid,
           age: '11',

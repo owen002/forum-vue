@@ -3,7 +3,7 @@
     <user-info></user-info>
     <div class="left-menus">
       <ul>
-        <li  @click="pflow">目录1</li>
+        <li @click="pflow">目录1</li>
         <li>目录2</li>
         <li>目录3</li>
         <li>目录4</li>
@@ -31,6 +31,7 @@
       pflow(){
         this.$emit('hiFather',this.childState)
       }
+
     },
     data(){
       return {

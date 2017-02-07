@@ -10,7 +10,6 @@ const state = {
     userid:''
   },
   rootRem:'',
-  translateX:'',
   maskOpacity:0
 };
 
@@ -20,9 +19,6 @@ const getters = {
   },
   [types.GET_REM](state){
     return state.rootRem
-  },
-  [types.GET_TRANSLATE](state){
-    return state.translateX
   },
   [types.GET_MASKOPACITY](state){
     return state.maskOpacity
@@ -35,9 +31,6 @@ const actions = {
   },
   [types.MODIFY_REM](context,rootRem){
     context.commit(types.MODIFY_REM,rootRem)
-  },
-  [types.SET_TRANSLATE](context,translate){
-    context.commit(types.SET_TRANSLATE,translate)
   },
   [types.SET_MASKOPACITY](context,maskop){
     context.commit(types.SET_MASKOPACITY,maskop)
@@ -63,7 +56,8 @@ const store = new Vuex.Store({
   state,
   getters,
   actions,
-  mutations
+  mutations,
+  strict: true
 });
 
 export default store
