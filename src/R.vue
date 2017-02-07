@@ -1,9 +1,8 @@
 <template>
   <div>
-    <a href="/index/welcome"><button>欢迎</button></a>
+    <router-link :to="{'name':'welcome'}">全部</router-link>
     <br>
-    <br>
-    <a href="/index/list"><button>进入列表</button></a>
+    <router-link :to="{'name':'list'}">进入列表</router-link>
   </div>
 </template>
 <script>
@@ -12,7 +11,4 @@
   }
 </script>
 <style>
-  a{
-    text-decoration: none;
-  }
 </style>

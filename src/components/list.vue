@@ -1,6 +1,6 @@
 <template>
   <section id="listViewWrapper" @touchmove="resolveTouchMove" @touchend="resolveTouchend">
-    <div class="mask transition-all" @click="showLeftBar"></div>
+    <div class="mask transition-all" @click="showLeftBar" v-show="maskFlag" v-bind:style="{opacity:opacity}"></div>
     <leftMenu :translateX="translateX"></leftMenu>
     <nv-header :showLeftBar="showLeftBar">列表页面</nv-header>
   </section>
@@ -17,7 +17,9 @@
     name: 'list',
     data(){
       return {
-        translateX: 'transform:translateX(0px)'
+        translateX: 'transform:translateX(0px)',
+        maskFlag:false,
+        opacity:'0'
       }
     },
     computed: {
@@ -30,12 +32,9 @@
       nvHeader
     },
     methods: {
-      toggleMask(state){
-        if (document.querySelector('.mask').style.display != state)
-          document.querySelector('.mask').style.display = state;
-      },
       changeOpacityMask(val){
-        document.querySelector('.mask').style.opacity = val;
+//        document.querySelector('.mask').style.opacity = val;
+        this.opacity = val;
       },
       resolveTouchMove(e) {
         let pX = e.touches[0].pageX;
@@ -48,7 +47,7 @@
         let ablv = Math.abs(lv), percentopac = ((ablv / (max * this.rootRem)) * 0.5).toFixed(2);
 
         this.changeOpacityMask(percentopac);
-        this.toggleMask('block');
+        this.maskFlag = true;
       },
       resolveTouchend(){
         var transiX = this.translateX.match(/.*\((.*)px\)/);
@@ -58,21 +57,21 @@
             this.translateX = 'transform:translateX(-' + max * this.rootRem + 'px)';
           } else {
             this.translateX = 'transform:translateX(0px)';
-            this.toggleMask('none');
+            this.maskFlag = false;
           }
         } else {
           this.translateX = 'transform:translateX(0px)';
-          this.toggleMask('none');
+          this.maskFlag = false;
         }
       },
       showLeftBar(){
         if (this.translateX == 'transform:translateX(0px)') {
           this.translateX = 'transform:translateX(-' + max * this.rootRem + 'px)';
           this.changeOpacityMask(0.5);
-          this.toggleMask('block');
+          this.maskFlag = true;
         } else {
           this.translateX = 'transform:translateX(0px)';
-          this.toggleMask('none');
+          this.maskFlag = false;
         }
       }
     }
@@ -87,7 +86,6 @@
     bottom: 0;
     right: 0;
     z-index: 900;
-    display: none;
   }
 
   #listViewWrapper {
