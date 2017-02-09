@@ -2,7 +2,7 @@ const Index = resolve => require(['./R.vue'], resolve);
 const Outer = resolve => require(['./index.vue'], resolve);
 const Welcome = resolve => require(['./App.vue'], resolve);
 const List = resolve => require(['./components/list.vue'], resolve);
-
+const ListDetail = resolve => require(['./components/listdetail.vue'], resolve);
 // const Index = resolve => {
 //   require.ensure(['./R.vue'], () => {
 //     resolve(require('./R.vue'));
@@ -46,6 +46,11 @@ const routes = [{
       path: 'list',
       name: 'list',
       component: List
+    },
+    {
+      path:'listdetail',
+      name:'listDetail',
+      component:ListDetail
     }
   ]
 }, {

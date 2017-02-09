@@ -18,6 +18,7 @@
       this.$nextTick(function () {
 //        const userid = this.$route.query.userid;
         const userid = this.$route.params.user;
+        console.log(this.$router);
         var userinfo = {
           username: userid,
           age: '11',

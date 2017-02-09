@@ -3,6 +3,21 @@
     <div class="mask transition-all" @click="showLeftBar" v-show="maskFlag" v-bind:style="{opacity:opacity}"></div>
     <leftMenu @hiFather="showChildMsg" :translateX="translateX"></leftMenu>
     <nv-header :showLeftBar="showLeftBar">列表页面</nv-header>
+
+    <section id="listWrapper">
+
+      <label style="height:50px;line-height:50px;display: block"><input type="checkbox" id="selectAll" v-model="selectAll"/>全选</label>
+      <ul>
+        <li v-for="item in articles" class="pos-li">
+          <label>
+            <input type="checkbox" v-model="item.isSelected">
+            <div class="title" v-text="item.title"></div>
+            <span v-text="item.desc"></span>
+          </label>
+          <router-link :to="{'name':'listDetail',params: { lid: item.id }}">文章详情</router-link>
+        </li>
+      </ul>
+    </section>
   </section>
 </template>
 
@@ -19,19 +34,45 @@
       return {
         translateX: 'transform:translateX(0px)',
         maskFlag:false,
-        opacity:'0'
+        opacity:'0',
+        articles:[
+          {id:1,title:'文章1',desc:'好文章',isSelected:false},
+          {id:2,title:'文章2',desc:'好文章',isSelected:false},
+          {id:3,title:'文章3',desc:'好文章',isSelected:true},
+          {id:4,title:'文章4',desc:'好文章',isSelected:false},
+          {id:5,title:'文章5',desc:'好文章',isSelected:false}
+        ]
       }
     },
     computed: {
       ...mapGetters({
         rootRem: types.GET_REM
-      })
+      }),
+      selectAll:{
+          get:function () {
+              for(let i of this.articles){
+                  if(!i.isSelected){
+                      return false;
+                  }
+              }
+              return true;
+          },
+        set:function (v) {
+            for(let i of this.articles){
+              i.isSelected = v;
+            }
+            return v;
+        }
+      }
     },
     components: {
       leftMenu,
       nvHeader
     },
     methods: {
+        showDetail:function () {
+            alert('文章详情')
+        },
       showChildMsg(msg){
         alert(msg);
       },
@@ -79,7 +120,7 @@
     }
   }
 </script>
-<style>
+<style scoped>
   .mask {
     background-color: #000;
     position: absolute;
@@ -89,7 +130,14 @@
     right: 0;
     z-index: 900;
   }
+  .pos-li{
 
+  }
+.title{
+  display: inline-block;
+  font-size: 18px;
+  font-weight: bold;
+}
   #listViewWrapper {
     height: 100%;
   }

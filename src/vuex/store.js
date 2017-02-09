@@ -53,11 +53,17 @@ const mutations = {
 };
 
 const store = new Vuex.Store({
-  state,
-  getters,
-  actions,
-  mutations,
-  strict: true
+  modules:{
+    current:{state,
+      getters,
+      actions,
+      mutations,
+      strict: true},
+    test:{
+      state:{user:'222222'}
+    }
+  }
+
 });
 
 export default store

@@ -13,38 +13,44 @@
   </section>
 </template>
 <script>
-  import {mapGetters} from 'vuex';
+  import {mapGetters, mapState} from 'vuex';
   import types from './../vuex/types';
 
   export default{
     computed: {
-      ...mapGetters({'userInfo': types.GET_USERINFO})
+//      ...mapGetters({'userInfo': types.GET_USERINFO}),
+      ...mapState({
+        'userInfo': (state) => {
+          return state.current.userInfo
+        }
+      }),
     },
     methods: {
       goLogin(){
-          //
-        this.$router.push({name:'welcome',params:{user:'222'}});
+        //
+        this.$router.push({name: 'welcome', params: {user: '222'}});
       },
       logOut(){
-        this.$router.replace({name:'welcome'});
+        this.$router.replace({name: 'welcome'});
       }
     }
   }
 </script>
 <style lang="less">
   @import "../assets/less/main.less";
+
   .user-section {
-    .user-img-div {
-      img {
-        width: 2rem;
-        border-radius: 1rem;
-        margin-top: 0.5rem;
-      }
-    }
-    .user-name {
-      font-size: 0.45rem;
-      margin-top: 0.2rem;
-      color: #032a9c;
-    }
+  .user-img-div {
+  img {
+    width: 2rem;
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+  }
+  }
+  .user-name {
+    font-size: 0.45rem;
+    margin-top: 0.2rem;
+    color: #032a9c;
+  }
   }
 </style>
